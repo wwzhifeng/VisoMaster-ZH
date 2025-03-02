@@ -1,0 +1,46 @@
+# Python缓存
+__pycache__/
+
+# 模型文件
+*.ckpt
+*.pth
+*.onnx
+*.engine
+*.trt
+models/liveportrait_onnx/*.onnx
+models/liveportrait_onnx/*.trt
+
+# 临时和配置
+*.profile
+*.timing
+*.dfm
+saved_parameters*.json
+startup_parameters*.json
+data.json
+merged_embeddings*.txt
+install.dat
+
+# IDE相关
+.vs/
+*.sln
+*.pyproj
+.vscode/
+
+# 不上传的目录
+cache/
+ffmpeg/
+output/
+WZF/
+.thumbnails/
+tensorrt-engines/
+source_videos/
+source_images/
+test_frames/
+test_videos/
+dependencies/
+
+# 媒体和大文件
+*.mp4
+*.jpg
+*.exe
+visomaster.ico

@@ -1,0 +1,455 @@
+from app.helpers.typing_helper import LayoutDictTypes
+
+FACE_EDITOR_LAYOUT_DATA: LayoutDictTypes = {
+    '': {
+        'FaceEditorCropScaleDecimalSlider': {
+            'level': 1,
+            'label': '裁剪比例',
+            'min_value': '1.50',
+            'max_value': '4.00',
+            'default': '2.50',
+            'step': 0.05,
+            'decimals': 2,
+            'help': '调整源裁剪比例。增大值以更远距离捕获面部。驱动视频的裁剪比例因子为2.2。'
+        },
+        'FaceEditorVYRatioDecimalSlider': {
+            'level': 1,
+            'label': 'VY比例',
+            'min_value': '-0.200',
+            'max_value': '0.200',
+            'default': '-0.125',
+            'step': 0.001,
+            'decimals': 3,
+            'help': '调整裁剪比例的VY值。增大值以更远距离捕获面部。驱动视频的裁剪因子为-0.1。'
+        },
+        'FaceEditorBlurAmountSlider': {
+            'level': 1,
+            'label': '模糊程度',
+            'min_value': '0',
+            'max_value': '100',
+            'default': '5',
+            'step': 1,
+            'help': '模糊程度。'
+        },
+        'FaceEditorEnableToggle': {
+            'level': 1,
+            'label': '启用面部姿势/表情编辑器',
+            'default': False,
+            'help': '启用面部姿势/表情编辑器。'
+        },
+        'FaceEditorTypeSelection': {
+            'level': 2,
+            'label': '面部编辑器类型',
+            #'options': ['Human-Face', 'Animal-Face'],
+            'options': ['Human-Face'],
+            'default': 'Human-Face',
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '选择面部编辑器中要编辑的目标类型。'
+        },
+        'EyesOpenRatioDecimalSlider': {
+            'level': 2,
+            'label': '眼睛闭合 <--> 张开比例',
+            'min_value': '-0.80',
+            'max_value': '0.80',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整眼睛的张开程度。'
+        },
+        'LipsOpenRatioDecimalSlider': {
+            'level': 2,
+            'label': '嘴唇闭合 <--> 张开比例',
+            'min_value': '-0.80',
+            'max_value': '0.80',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整嘴唇的张开程度。'
+        },
+        'HeadPitchSlider': {
+            'level': 2,
+            'label': '头部俯仰',
+            'min_value': '-15',
+            'max_value': '15',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整头部的俯仰角度。'
+        },
+        'HeadYawSlider': {
+            'level': 2,
+            'label': '头部偏转',
+            'min_value': '-15',
+            'max_value': '15',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整头部的偏转角度。'
+        },
+        'HeadRollSlider': {
+            'level': 2,
+            'label': '头部旋转',
+            'min_value': '-15',
+            'max_value': '15',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整头部的旋转角度。'
+        },
+        'XAxisMovementDecimalSlider': {
+            'level': 2,
+            'label': 'X轴移动',
+            'min_value': '-0.19',
+            'max_value': '0.19',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整头部在X轴方向上的移动。'
+        },
+        'YAxisMovementDecimalSlider': {
+            'level': 2,
+            'label': 'Y轴移动',
+            'min_value': '-0.19',
+            'max_value': '0.19',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整头部在Y轴方向上的移动。'
+        },
+        'ZAxisMovementDecimalSlider': {
+            'level': 2,
+            'label': 'Z轴移动',
+            'min_value': '-0.90',
+            'max_value': '1.20',
+            'default': '1.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整头部在Z轴方向上的移动。'
+        },
+        'MouthPoutingDecimalSlider': {
+            'level': 2,
+            'label': '嘴部撅嘴',
+            'min_value': '-0.09',
+            'max_value': '0.09',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整嘴部的撅嘴程度。'
+        },
+        'MouthPursingDecimalSlider': {
+            'level': 2,
+            'label': '嘴部收紧',
+            'min_value': '-20.00',
+            'max_value': '15.00',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整嘴部的收紧程度。'
+        },
+        'MouthGrinDecimalSlider': {
+            'level': 2,
+            'label': '嘴部咧笑',
+            'min_value': '0.00',
+            'max_value': '15.00',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整嘴部的咧笑程度。'
+        },
+        'LipsCloseOpenSlider': {
+            'level': 2,
+            'label': '嘴唇闭合 <--> 张开值',
+            'min_value': '-90',
+            'max_value': '120',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整嘴唇的闭合或张开程度。'
+        },
+        'MouthSmileDecimalSlider': {
+            'level': 2,
+            'label': '嘴部微笑',
+            'min_value': '-0.30',
+            'max_value': '1.30',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整嘴部的微笑程度。'
+        },
+        'EyeWinkDecimalSlider': {
+            'level': 2,
+            'label': '眼睛眨眼',
+            'min_value': '0.00',
+            'max_value': '39.00',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整眼睛的眨眼程度。'
+        },
+        'EyeBrowsDirectionDecimalSlider': {
+            'level': 2,
+            'label': '眉毛方向',
+            'min_value': '-30.00',
+            'max_value': '30.00',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整眉毛的方向。'
+        },
+        'EyeGazeHorizontalDecimalSlider': {
+            'level': 2,
+            'label': '眼神水平方向',
+            'min_value': '-30.00',
+            'max_value': '30.00',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整眼神的水平方向。'
+        },
+        'EyeGazeVerticalDecimalSlider': {
+            'level': 2,
+            'label': '眼神垂直方向',
+            'min_value': '-63.00',
+            'max_value': '63.00',
+            'default': '0.00',
+            'step': 0.01,
+            'decimals': 2,
+            'parentToggle': 'FaceEditorEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整眼神的垂直方向。'
+        },
+        'FaceMakeupEnableToggle': {
+            'level': 1,
+            'label': '面部化妆',
+            'default': False,
+            'help': '启用面部化妆功能，不包括头发、眉毛、眼睛和嘴唇。'
+        },
+        'FaceMakeupRedSlider': {
+            'level': 2,
+            'label': '红色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'FaceMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整红色值。'
+        },
+        'FaceMakeupGreenSlider': {
+            'level': 2,
+            'label': '绿色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 3,
+            'parentToggle': 'FaceMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整绿色值。'
+        },
+        'FaceMakeupBlueSlider': {
+            'level': 2,
+            'label': '蓝色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'FaceMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整蓝色值。'
+        },
+        'FaceMakeupBlendAmountDecimalSlider': {
+            'level': 2,
+            'label': '混合程度',
+            'min_value': '0.01',
+            'max_value': '1.00',
+            'default': '0.05',
+            'decimals': 2,
+            'step': 0.01,
+            'parentToggle': 'FaceMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '混合值：0.00表示原始颜色，1.00表示完全目标颜色。'
+        },
+        'HairMakeupEnableToggle': {
+            'level': 1,
+            'label': '头发化妆',
+            'default': False,
+            'help': '启用头发化妆功能。'
+        },
+        'HairMakeupRedSlider': {
+            'level': 2,
+            'label': '红色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'HairMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整红色值。'
+        },
+        'HairMakeupGreenSlider': {
+            'level': 2,
+            'label': '绿色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 3,
+            'parentToggle': 'HairMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整绿色值。'
+        },
+        'HairMakeupBlueSlider': {
+            'level': 2,
+            'label': '蓝色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'HairMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整蓝色值。'
+        },
+        'HairMakeupBlendAmountDecimalSlider': {
+            'level': 2,
+            'label': '混合程度',
+            'min_value': '0.01',
+            'max_value': '1.00',
+            'default': '0.05',
+            'decimals': 2,
+            'step': 0.01,
+            'parentToggle': 'HairMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '混合值：0.00表示原始颜色，1.00表示完全目标颜色。'
+        },
+        'EyeBrowsMakeupEnableToggle': {
+            'level': 1,
+            'label': '眉毛化妆',
+            'default': False,
+            'help': '启用眉毛化妆功能。'
+        },
+        'EyeBrowsMakeupRedSlider': {
+            'level': 2,
+            'label': '红色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'EyeBrowsMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整红色值。'
+        },
+        'EyeBrowsMakeupGreenSlider': {
+            'level': 2,
+            'label': '绿色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 3,
+            'parentToggle': 'EyeBrowsMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整绿色值。'
+        },
+        'EyeBrowsMakeupBlueSlider': {
+            'level': 2,
+            'label': '蓝色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'EyeBrowsMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整蓝色值。'
+        },
+        'EyeBrowsMakeupBlendAmountDecimalSlider': {
+            'level': 2,
+            'label': '混合程度',
+            'min_value': '0.01',
+            'max_value': '1.00',
+            'default': '0.05',
+            'decimals': 2,
+            'step': 0.01,
+            'parentToggle': 'EyeBrowsMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '混合值：0.00表示原始颜色，1.00表示完全目标颜色。'
+        },
+        'LipsMakeupEnableToggle': {
+            'level': 1,
+            'label': '唇部化妆',
+            'default': False,
+            'help': '启用唇部化妆功能。'
+        },
+        'LipsMakeupRedSlider': {
+            'level': 2,
+            'label': '红色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'LipsMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整红色值。'
+        },
+        'LipsMakeupGreenSlider': {
+            'level': 2,
+            'label': '绿色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 3,
+            'parentToggle': 'LipsMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整绿色值。'
+        },
+        'LipsMakeupBlueSlider': {
+            'level': 2,
+            'label': '蓝色',
+            'min_value': '0',
+            'max_value': '255',
+            'default': '0',
+            'step': 1,
+            'parentToggle': 'LipsMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '调整蓝色值。'
+        },
+        'LipsMakeupBlendAmountDecimalSlider': {
+            'level': 2,
+            'label': '混合程度',
+            'min_value': '0.01',
+            'max_value': '1.00',
+            'default': '0.05',
+            'decimals': 2,
+            'step': 0.01,
+            'parentToggle': 'LipsMakeupEnableToggle',
+            'requiredToggleValue': True,
+            'help': '混合值：0.0表示原始颜色，1.0表示完全目标颜色。'
+        },
+    }
+}
