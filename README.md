@@ -51,7 +51,7 @@ Before proceeding, ensure you have the following installed on your system:
 ### **1. Clone the Repository**  
 Open a terminal or command prompt and run:  
 ```sh
-https://github.com/wwzhifeng/VisoMaster-ZH.git
+git clone https://github.com/wwzhifeng/VisoMaster-ZH.git
 ```
 ```sh
 cd VisoMaster-ZH
