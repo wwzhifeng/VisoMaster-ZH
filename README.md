@@ -1,5 +1,5 @@
 
-# VisoMaster 
+# VisoMaster-ZH
 ### VisoMaster is a powerful yet easy-to-use tool for face swapping and editing in images and videos. It utilizes AI to produce natural-looking results with minimal effort, making it ideal for both casual users and professionals.  
 
 ---
@@ -51,7 +51,7 @@ Before proceeding, ensure you have the following installed on your system:
 ### **1. Clone the Repository**  
 Open a terminal or command prompt and run:  
 ```sh
-git clone https://github.com/visomaster/VisoMaster.git
+https://github.com/wwzhifeng/VisoMaster-ZH.git
 ```
 ```sh
 cd VisoMaster-ZH
