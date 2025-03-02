@@ -54,7 +54,7 @@ Open a terminal or command prompt and run:
 git clone https://github.com/visomaster/VisoMaster.git
 ```
 ```sh
-cd VisoMaster
+cd VisoMaster-ZH
 ```
 
 ### **2. Create and Activate a Conda Environment**  
