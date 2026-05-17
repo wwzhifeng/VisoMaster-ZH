@@ -1,0 +1,65 @@
+# ============================================================
+#  VisoMaster-TRT-Portable .gitignore
+#  只提交我们自己的脚本/文档, 不提交:
+#   - 嵌入式 Python 运行时 (pip 安装产物, 几 GB)
+#   - 上游 VisoMaster 源码 (跑 _build_package.ps1 自动 clone)
+#   - 模型权重 (用户自行下载)
+#   - 引擎编译产物 (用户本机编)
+#   - 用户运行时数据
+# ============================================================
+
+# --- 嵌入式 Python + 全部 pip 包 (几个 GB) ---
+python/
+
+# --- 上游 VisoMaster 源码 (含中文化改动, 一并提交以方便用户/二次开发) ---
+# app/ 整个目录提交, 但排除几个大文件夹
+app/ffmpeg/                    # 嵌入式 ffmpeg (236MB, 主包里带)
+app/**/__pycache__/
+app/**/.thumbnails/
+.thumbnails/                   # 主程序生成的缩略图缓存
+
+# --- 模型权重 (启动器内下载, 或用户自行放入) ---
+model_assets/
+!model_assets/.keep
+
+# --- TRT 引擎编译产物 (与 GPU 强绑定, 不发布) ---
+engines/
+!engines/.keep
+tensorrt-engines/
+
+# --- 用户运行时数据 ---
+workspace/
+!workspace/.keep
+output/
+!output/.keep
+tmp/
+!tmp/.keep
+
+# --- 上游下载脚本拉到的备份, 不提交 ---
+_internal/_upstream_download_models.py
+
+# --- Python 缓存 ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# --- IDE ---
+.idea/
+.vscode/
+*.swp
+
+# --- 构建产物 ---
+dist/
+build/
+*.7z
+*.zip
+
+# --- 用户私有配置覆盖 (示例 config.ini 仍提交) ---
+config.local.ini
+
+# --- 系统垃圾 ---
+.DS_Store
+Thumbs.db
+desktop.ini

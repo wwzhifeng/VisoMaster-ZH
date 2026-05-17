@@ -1,0 +1,19 @@
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+This project (VisoMaster-TRT-Portable) is a derivative work of:
+  - VisoMaster: https://github.com/visomaster/VisoMaster (GPL-3.0)
+
+All scripts written for this integration pack (launcher GUI, optimization
+framework, engine builder, packaging scripts) are released under GPL-3.0
+to remain compatible with upstream.
+
+For the full GPL-3.0 license text, see:
+  https://www.gnu.org/licenses/gpl-3.0.txt
+
+Or run the following to fetch a local copy:
+  curl -L -o LICENSE.full https://www.gnu.org/licenses/gpl-3.0.txt
