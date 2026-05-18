@@ -207,9 +207,60 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
+        self._setup_status_bar()
         self.initialize_variables()
         self.initialize_widgets()
         self.load_last_workspace()
+
+    def _setup_status_bar(self):
+        status_bar = QtWidgets.QStatusBar()
+        self.setStatusBar(status_bar)
+        status_bar.setSizeGripEnabled(False)
+        status_bar.setStyleSheet(
+            "QStatusBar {"
+            "  background-color: #1a1d23;"
+            "  border-top: 1px solid #2c3e50;"
+            "  padding: 3px 10px;"
+            "  font-size: 11px;"
+            "}"
+            "QStatusBar QLabel {"
+            "  color: #9dcbd9;"
+            "}"
+        )
+
+        website_label = QtWidgets.QLabel(
+            '<a href="https://wangzhifeng.vip/" style="color:#4facc9; text-decoration:none;">'
+            '更多AI工具点击这里：wangzhifeng.vip'
+            '</a>'
+        )
+        website_label.setOpenExternalLinks(True)
+        status_bar.addWidget(website_label)
+
+        bilibili_label = QtWidgets.QLabel(
+            '<a href="https://www.bilibili.com/video/BV12yZLY3EYD/?vd_source=c5a0db33c99c857eec1eaee65d63dabc"'
+            ' style="color:#4facc9; text-decoration:none;">'
+            '国内教程'
+            '</a>'
+        )
+        bilibili_label.setOpenExternalLinks(True)
+        status_bar.addPermanentWidget(bilibili_label)
+
+        youtube_label = QtWidgets.QLabel(
+            '<a href="https://www.youtube.com/watch?v=HmEWKk8qqLA"'
+            ' style="color:#4facc9; text-decoration:none;">'
+            '国外教程'
+            '</a>'
+        )
+        youtube_label.setOpenExternalLinks(True)
+        status_bar.addPermanentWidget(youtube_label)
+
+        github_label = QtWidgets.QLabel(
+            '<a href="https://github.com/wwzhifeng/VisoMaster-ZH" style="color:#4facc9; text-decoration:none;">'
+            'GitHub：VisoMaster-ZH'
+            '</a>'
+        )
+        github_label.setOpenExternalLinks(True)
+        status_bar.addPermanentWidget(github_label)
 
     def resizeEvent(self, event: QtGui.QResizeEvent):
         # print("Called resizeEvent()")
