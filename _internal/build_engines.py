@@ -233,6 +233,12 @@ def _build_dynamic(onnx_path: Path, engine_path: Path, precision: str,
     return True, "OK"
 
 
+# 已知不兼容当前 TRT 的 ONNX, 自动跳过 (避免日志吓到用户)
+KNOWN_INCOMPATIBLE_ONNX = {
+    "warping_spade.onnx",   # 旧版 GridSample 5D, TRT 不支持, 已被 warping_spade-fix.onnx 替代
+}
+
+
 def build_one(onnx_path: Path, engine_path: Path, precision: str,
               profiles: Optional[dict], timing_cache_path: Path,
               workspace_mb: int = 4096) -> tuple[bool, str]:
@@ -240,6 +246,10 @@ def build_one(onnx_path: Path, engine_path: Path, precision: str,
     动态 shape -> 自建 builder 带 profile
     静态 shape -> 调用上游 onnx_to_trt
     """
+    # 0. 已知不兼容的直接跳过
+    if onnx_path.name in KNOWN_INCOMPATIBLE_ONNX:
+        return True, "SKIP (已知不兼容, 主程序用替代版本)"
+
     # 1. 检测是否动态 shape
     try:
         is_dynamic, _ = _has_dynamic_shape(onnx_path)
